@@ -53,12 +53,10 @@ module "gke_auth" {
   use_private_endpoint = false
 }
 
-
 provider "kubectl" {
-  host                   = module.gke_cluster.kube_config.host
-  client_certificate     = base64decode(module.gke_cluster.kube_config.client_certificate)
-  client_key             = base64decode(module.gke_cluster.kube_config.client_key)
-  cluster_ca_certificate = base64decode(module.gke_cluster.kube_config.cluster_ca_certificate)
+  host                   = module.gke_auth.host
+  cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
+  token                  = module.gke_auth.token
   load_config_file       = false
 }
 

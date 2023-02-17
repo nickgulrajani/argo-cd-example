@@ -53,13 +53,9 @@ module "gke_auth" {
   use_private_endpoint = false
 }
 
-
 provider "kubectl" {
-  host                   = module.gke_cluster.kube_config.host
-  client_certificate     = base64decode(module.gke_cluster.kube_config.client_certificate)
-  client_key             = base64decode(module.gke_cluster.kube_config.client_key)
-  cluster_ca_certificate = base64decode(module.gke_cluster.kube_config.cluster_ca_certificate)
-  load_config_file       = false
+    source  = "gavinbunney/kubectl"
+      version = ">= 1.10.0"
 }
 
 data "kubectl_file_documents" "namespace" {

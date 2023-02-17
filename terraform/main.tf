@@ -7,7 +7,7 @@ terraform {
     }
   }
   backend "gcs" {
-    bucket = "terraform-backend-<project-id>"
+    bucket = "terraform-backend-gitops-362821"
     prefix = "argocd-terraform"
   }
 }

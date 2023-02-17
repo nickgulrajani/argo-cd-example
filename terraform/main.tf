@@ -53,10 +53,6 @@ module "gke_auth" {
   use_private_endpoint = false
 }
 
-provider "kubectl" {
-    source  = "gavinbunney/kubectl"
-      version = ">= 1.10.0"
-}
 
 data "kubectl_file_documents" "namespace" {
     content = file("../manifests/argocd/namespace.yaml")
